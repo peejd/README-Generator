@@ -1,11 +1,17 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
+const currentYear = new Date().getFullYear();
 
 const questions = [
     {
       type: 'input',
       name: 'title',
       message: 'What is your project title?'
+    },
+    {
+      type: 'input',
+      name: 'name',
+      message: 'What is your name as it should appear in the copyright?'
     },
     {
       type: 'input',
@@ -92,7 +98,6 @@ ${answers.contrib}
 
 ## Testing
 ${answers.testing}
-
 ## Questions
 Please check out my GitHub for examples of my work:
 https://github.com/${answers.gituser}
@@ -101,7 +106,11 @@ If you have any questions, feel free to contact me via email at:
 ${answers.email}
 
 ## License
+Copyright © ${currentYear} by ${answers.name}.
+
 This application is covered under the ${answers.license}.
+
+Click the license badge icon near the top of this README for license details and terms.
 `;
     fs.writeFile('README.md', md, (err) => {
       if (err) throw err;
